@@ -8,7 +8,10 @@ api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 
 parser = reqparse.RequestParser()
-parser.add_argument('field')
+parser.add_argument('sensor1')
+parser.add_argument('sensor2')
+parser.add_argument('sensor3')
+parser.add_argument('sensor4')
 
 field1 = field2 = field3 = field4 = None
 
