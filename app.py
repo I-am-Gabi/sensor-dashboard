@@ -10,14 +10,17 @@ api = Api(api_bp)
 parser = reqparse.RequestParser()
 parser.add_argument('field')
 
-field = None
+field1 = field2 = field3 = field4 = None
 
 
 class Sensor(Resource):
     def post(self):
-        global field
+        global field1, field2, field3, field4
         args = parser.parse_args()
-        field = args['field']
+        field1 = args['sensor1']
+        field2 = args['sensor2']
+        field3 = args['sensor3']
+        field4 = args['sensor4']
         return '', 201
 
 
@@ -32,7 +35,7 @@ app.register_blueprint(api_bp)
 
 @app.route("/")
 def hello():
-    return render_template('index.html', content=field)
+    return render_template('index.html', sensor1=field1, sensor2=field2, sensor3=field3, sensor4=field4)
 
 
 if __name__ == "__main__":
