@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, render_template
+from flask import Flask, Blueprint, render_template, jsonify
 from flask_restful import Api, Resource, url_for, reqparse
 
 ##
@@ -13,7 +13,7 @@ parser.add_argument('sensor2')
 parser.add_argument('sensor3')
 parser.add_argument('sensor4')
 
-field1 = field2 = field3 = field4 = None
+field1 = field2 = field3 = field4 = 0
 
 
 class Sensor(Resource):
@@ -37,8 +37,13 @@ app.register_blueprint(api_bp)
 
 
 @app.route("/")
-def hello():
-    return render_template('index.html', sensor1=field1, sensor2=field2, sensor3=field3, sensor4=field4)
+def index():
+    return render_template('index.html')
+
+
+@app.route("/sensor_data", methods=['GET'])
+def sensor_data():
+    return jsonify(sensor1=field1, sensor2=field2, sensor3=field3, sensor4=field4)
 
 
 if __name__ == "__main__":

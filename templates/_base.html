@@ -30,12 +30,26 @@
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        <script type="text/javascript">
-            window.setTimeout(function(){
-                document.location.reload(true);
-            }, 5000);
+        <![endif]--> 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>
+            var interval = 500;   // number of mili seconds between each call
+            var refresh = function() {
+                $.ajax({
+                    url: "{{ url_for('sensor_data') }}",
+                    cache: false,
+                    success: function(data) {
+                        $("#sensor1").html(data.sensor1);
+                        $("#sensor2").html(data.sensor2);
+                        $("#sensor3").html(data.sensor3);
+                        $("#sensor4").html(data.sensor4);
+                        setTimeout(function() {
+                            refresh();
+                        }, interval);
+                    }
+                });
+            };
+            refresh();
         </script>
     {% endblock %}
 </head>
