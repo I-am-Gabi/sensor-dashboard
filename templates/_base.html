@@ -33,7 +33,7 @@
         <![endif]-->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>
-            var interval = 60000;   // number of mili seconds between each call
+            var interval = 10000;   // number of mili seconds between each call
             var refresh = function() {
                 $.ajax({
                     url: "{{ url_for('sensor_data') }}",
