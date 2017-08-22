@@ -1,6 +1,7 @@
 import time, requests
 from random import randint
 
+
 # http://localhost:5000/update
 def run():
     r = requests.post("http://smartmetropolis-dashboard.herokuapp.com/update",
